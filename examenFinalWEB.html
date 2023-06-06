@@ -5,12 +5,117 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExamenFinal</title>
-    <script src="examen1.js"></script>
-    <link rel="stylesheet" type="text/css" href="examen.css">
+    
 </head>
 <body>
-    <p>Hola que tal?nnnnnnnn</p>
-    <h1>titulo</h1>
-    
+    <!--Crear un formulario que permita cargar reseñas de películas con los siguientes datos:
+Película (obligatorio, máximo 30 caracteres)
+Puntuación (obligatorio, solo se puede puntuar con 1, 2, 3, 4 o 5)
+Comentario (opcional, pero si la escribe el mínimo es 10 caracteres y el máximo es 200 caracteres)
+Dar estilo particular al formulario.
+Validar campos usando javascript.
+Mostrar errores de validación manipulando el DOM.
+Cambiar estilo a campos con errores de validación.
+Al enviar, si los datos está bien hacer lo siguiente:
+Mostrar los datos ingresados con el formato que desee. Cada reseña debe distinguirse.
+Limpiar el formulario.
+Hacer foco en el input de la pelí<cula -->
+    <style>
+        *{
+            background-color: aquamarine;
+        }
+        #nombreMal{
+            display: none;
+        }
+        #puntoMal{
+            display: none;
+        }
+        #comentarioMal{
+            display: none;
+        }
+    </style>
+    <form id="formulario" onsubmit="return validar()"">
+        <div>
+            <label for="nombre">Pelicula</label>
+            <input id="nombre" autofocus />
+            <p id="nombreMal">Es obligatorio el nombre y no debe tener mas de 30 caracteres</p>
+             </div>
+             <div>
+                <label for="">puntuacion</label>
+                <input id="puntos"/>
+                <p id="puntoMal">La puntuacion debe ser entre 1 y 5</p>
+             </div>
+             <div>
+                <label for="">comenterio</label>
+                <textarea  id="comentario" cols="30" rows="30"></textarea>
+                <p id="comentarioMal">Los comentarios deben tener mas de 10 caracteres y menos de 200 </p>
+                <button type="submit">Enviar</button>
+             </div>
+      
+    </form>
+    <div id="mostrar">
+        
+        
+        
+    </div>
+<script>
+    let mostrar=document.querySelector("#mostrar");
+    let nombre=document.querySelector("#nombre");
+    let puntos=document.querySelector("#puntos");
+    let nombreMal=document.querySelector("#nombreMal");
+    let puntoMal=document.querySelector("#puntoMal");
+    let comenterioMal=document.querySelector("#comentarioMal");
+    let comenterio=document.querySelector("#comentario");
+    let n=document.createElement("p");
+    let p=document.createElement("p");
+    let c=document.createElement("p");
+    let e=document.createElement("p");
+    let d=document.createElement("p");
+    let bandera=true
+    function validar(){
+            nombre.style.border="";
+            nombre.style.border="";
+            nombre.style.border="";
+           if(nombre.value.length>30||nombre.value==""){
+            nombre.style.border="3px solid red";
+            nombreMal.style.display="block";
+            bandera=false;
+           }
+           if(puntos.value<1||puntos.value>5){
+            bandera =false
+            puntos.style.border="3px solid red";
+            puntoMal.style.display="block";
+
+           }
+           if(puntos.value==""){
+            bandera=false;
+            puntos.style.border="3px solid red";
+           }
+           if(comenterio.value !=""){
+
+           }else if(comentario.length<10||comentario.length>200){
+            comentario.style.border="3px solid red";
+            comentarioMal.style.display="block";
+           bandera=false;
+           }
+       if(bandera){
+          n.innerText=nombre.value;
+          p.innerText=puntos.value;
+          c.innerText=comenterio.value;
+          e.innerHTML="Envio exitoso";
+          d.innerHTML="Los datos enviados son";
+          mostrar.appendChild(e);
+          mostrar.appendChild(d);
+          mostrar.appendChild(n);
+          mostrar.appendChild(p);
+          mostrar.appendChild(c);
+          nombre.value="";
+          puntos.value="";
+          comentario.value="";
+       }  
+       return false;  
+    }
+</script>
+        
 </body>
 </html>
